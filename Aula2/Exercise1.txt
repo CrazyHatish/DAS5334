@@ -1,0 +1,10 @@
+1.1 - If the right-most parenthesis is left out: a new line is created to continue input into the function
+- If the left-most parenthesis is left out: printh is not defined
+- If both: printh is not defined
+1.2 - If the right-most quotation mark is left out: SyntaxError
+- If the left-most quotation mark is left out: SyntaxError: EOL while scanning string literal 
+- If both: SyntaxError 
+1.3 - The operation is executed normally
+1.4 - Leading zeros are not accepted by Python (SyntaxError: invalid token)
+1.5 - If numbers: SyntaxError: invalid syntax
+If strings: they are concatenated as if a '+' operator was between them
