@@ -1,5 +1,5 @@
 import turtle
-from math import pi, cos, sqrt
+from math import pi, cos, sqrt, ceil
 bob = turtle.Turtle()
 
 def square(t, length):
@@ -13,7 +13,7 @@ def circle(t, r):
 
 def arc(t, angle, r):
     circumference = 2 * pi * r
-    n = int(circumference / 3)
+    n = ceil(circumference / 3)
     side_length = circumference / n
     polyline(t, n, angle, side_length) 
 
@@ -34,15 +34,32 @@ def flower(t, angle, petals, r):
         t.seth(0)
 
 def draw_isoceles_triangle(t, base, angle):
-    sides = sqrt(base ** 2 / (2*(1-cos(angle*pi/180))))
+    other_angle = 180 - angle*2
+    sides = sqrt(base ** 2 / (2* (1-cos(other_angle*pi/180)) ))
     t.fd(base)
     t.lt(180 - angle)
     t.fd(sides)
-    t.lt(180 - 2*angle)
+    t.lt(180 - other_angle)
     t.fd(sides)
+    t.lt(180 - angle)
+
+def draw_triangle_poly(t, side, n):
+    angle = ((n - 2) * 180 / n)
+    for _ in range(n):
+        draw_isoceles_triangle(t, side, angle/2)
+        t.fd(side)
+        t.lt(180 - angle)
+
+def draw_spiral(t, length, loops):
+    seg = loops*360
+    for i in range(seg):
+        t.fd(length/seg*((seg-i)/seg))
+        t.lt(1)
 
 #flower(bob, 75, 8, 150)
 
-draw_isoceles_triangle(bob, 100, 45)
+# draw_triangle_poly(bob, 50, 7)
+
+draw_spiral(bob, 1000, 3)
 
 turtle.mainloop()
