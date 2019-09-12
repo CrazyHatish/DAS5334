@@ -18,28 +18,15 @@ for word in word_list:
 
 print(len(matching_words))
 
-letters = ascii_lowercase
-five_letters = []
-for i in letters:
-    for j in letters:
-        for k in letters:
-            for l in letters:
-                if len(set([i, j, k, l])) == 4:
-                    five_letters.append(i+j+k+l+'a')
+letters = list(ascii_lowercase)
 
-biggest_set = []
-best_word = ''
-i = 1
-for five_word in five_letters:
-    matching_words = []
-    for word in word_list:
-        if avoids(word.strip(), five_word):
-            matching_words.append(word.strip())
-    if len(matching_words) > len(biggest_set):
-        biggest_set = matching_words[:]
-        best_word = five_word
-    print("{} / {}".format(i, len(five_letters)))
-    i += 1
+words = word_list[:]
+best_letters = []
+for _ in range(5):
+    filtered_words = [list(filter(lambda w: avoids(w, letter), words)) for letter in letters]
+    words = min(filtered_words)
+    best_letter = filtered_words.index(min(filtered_words))
+    best_letters.append(letters[best_letter])
+    letters.remove(letters[best_letter])
 
-print(best_word)
-
+print(best_letters)
