@@ -14,7 +14,7 @@ birthdays_lists = []
 for _ in range(10000):
     bday_list = []
 
-    for _ in range(21):
+    for _ in range(23):
         bday_list.append(randint(1, 365))
 
     birthdays_lists.append(bday_list)
