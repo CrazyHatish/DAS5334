@@ -21,5 +21,4 @@ for _ in range(10000):
 
 duplicates_list = list(filter(has_duplicates, birthdays_lists))
 
-print("{} de 10000 turmas tem aniversarios coincidentes ({:.3f}%)".format(len(duplicates_list), len(duplicates_list)/10000))
-
+print("{} de 10000 turmas têm aniversários coincidentes ({:.2f}%)".format(len(duplicates_list), len(duplicates_list)/100))
